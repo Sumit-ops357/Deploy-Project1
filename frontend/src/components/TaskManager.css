@@ -1,0 +1,119 @@
+.task-manager {
+  width: 100%;
+}
+
+.task-manager h3 {
+  margin-bottom: 16px;
+  color: #4a4e69;
+}
+
+.task-input-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.task-input-row input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #c9ada7;
+  font-size: 1rem;
+}
+
+.task-input-row button {
+  background: #4a4e69;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+
+.task-input-row button:hover {
+  background: #9a8c98;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.task-list input[type="checkbox"] {
+  width: 24px;
+  height: 24px;
+  accent-color: #764ba2;
+  border-radius: 6px;
+  border: 2px solid #764ba2;
+  margin-right: 16px;
+  transition: box-shadow 0.2s, border-color 0.2s;
+  box-shadow: 0 2px 8px rgba(118, 75, 162, 0.08);
+  cursor: pointer;
+}
+
+.task-list input[type="checkbox"]:hover {
+  box-shadow: 0 4px 16px rgba(118, 75, 162, 0.18);
+  border-color: #4a4e69;
+}
+
+.task-list li {
+  display: flex;
+  align-items: center;
+  background: #f8f9fa;
+  margin-bottom: 20px;
+  padding: 18px 24px;
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(102, 126, 234, 0.13);
+  transition: box-shadow 0.2s, transform 0.2s, background 0.2s;
+  position: relative;
+}
+
+.task-list li:nth-child(even) {
+  background: #e9ecef;
+}
+
+.task-list li:hover {
+  box-shadow: 0 12px 36px rgba(102, 126, 234, 0.18);
+  background: #f5f7fa;
+  transform: translateY(-2px) scale(1.01);
+}
+
+.task-list span {
+  flex: 1;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #4a4e69;
+  letter-spacing: 0.5px;
+}
+
+.delete-btn {
+  background: #c9ada7;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  text-align: center;
+  transition: background 0.2s, transform 0.2s;
+  margin-left: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-btn:hover {
+  background: #764ba2;
+  transform: scale(1.1);
+}
+
+.completed-task span {
+  text-decoration: line-through;
+  color: #aaa;
+  opacity: 0.7;
+}

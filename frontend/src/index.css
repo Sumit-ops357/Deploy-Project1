@@ -1,0 +1,47 @@
+body.dark {
+  background: #181824;
+  color: #f2e9e4;
+}
+
+body.dark .header {
+  background: #22223b;
+  color: #f2e9e4;
+}
+
+body.dark .sidebar {
+  background: #181824;
+  color: #f2e9e4;
+}
+
+body.dark .dashboard-card,
+body.dark .dashboard,
+body.dark .pomodoro,
+body.dark .task-manager,
+body.dark .analytics {
+  background: #23233a !important;
+  color: #f2e9e4 !important;
+}
+
+body.dark input,
+body.dark textarea {
+  background: #23233a;
+  color: #f2e9e4;
+  border: 1px solid #4a4e69;
+}
+
+body.dark .bar {
+  background: linear-gradient(135deg, #4a4e69 0%, #9a8c98 100%);
+}
+
+.theme-toggle {
+  margin-right: 12px;
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+body, .dashboard-card, .header, .sidebar, .pomodoro, .task-manager, .analytics {
+  transition: background 0.3s, color 0.3s;
+}
