@@ -14,6 +14,7 @@ import {
 import { Line, Bar, Doughnut } from 'react-chartjs-2';
 import axios from 'axios';
 import './Analytics.css';
+import { API_URL } from '../utils/api';
 
 ChartJS.register(
   CategoryScale,
@@ -46,8 +47,8 @@ const Analytics = () => {
       const headers = token ? { Authorization: `Bearer ${token}` } : {};
       
       const [analyticsResponse, weeklyResponse] = await Promise.all([
-        axios.get('http://localhost:5000/api/analytics', { headers }),
-        axios.get('http://localhost:5000/api/analytics/weekly', { headers })
+        axios.get(`${API_URL}/api/analytics`, { headers }),
+        axios.get(`${API_URL}/api/analytics/weekly`, { headers })
       ]);
 
       const analytics = analyticsResponse.data;

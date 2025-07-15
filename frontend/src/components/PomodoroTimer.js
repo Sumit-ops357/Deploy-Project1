@@ -1,15 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './PomodoroTimer.css';
+import { API_URL } from '../utils/api';
 
 // Helper to show browser notification
 // Notification logic works for both Standard and Long sessions
 function showNotification(title, body) {
-  if ('Notification' in window) {
-    if (Notification.permission === 'granted') {
-      new Notification(title, { body });
-    } else if (Notification.permission !== 'denied') {
-      Notification.requestPermission();
-    }
+  if (Notification.permission === "granted") {
+    new Notification(title, { body });
   }
 }
 
@@ -40,6 +37,12 @@ function PomodoroTimer({ sessionType = 'Standard', longWorkMinutes = 50, longBre
     setSessionEnded(false);
     clearInterval(intervalRef.current);
   }, [sessionType, mode, longWorkMinutes, longBreakMinutes]);
+
+  useEffect(() => {
+    if (Notification.permission !== "granted") {
+      Notification.requestPermission();
+    }
+  }, []);
 
   const startTimer = () => {
     if (running) return;
@@ -97,7 +100,7 @@ function PomodoroTimer({ sessionType = 'Standard', longWorkMinutes = 50, longBre
 
   const saveSession = async (mode, duration) => {
     const token = localStorage.getItem('token');
-    await fetch('http://localhost:5000/api/pomodoros', {
+    await fetch(`${API_URL}/api/pomodoros`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

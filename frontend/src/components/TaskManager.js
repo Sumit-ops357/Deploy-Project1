@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './TaskManager.css';
+import { API_URL } from '../utils/api';
 
 // Helper to show browser notification
 function showNotification(title, body) {
+  console.log('Attempting to show notification:', title, body, Notification.permission);
   if ('Notification' in window && Notification.permission === 'granted') {
     new Notification(title, { body });
   }
@@ -17,7 +19,7 @@ function TaskManager() {
 
   const fetchTasks = async () => {
     const token = localStorage.getItem('token');
-    const res = await axios.get('http://localhost:5000/api/tasks', {
+    const res = await axios.get(`${API_URL}/api/tasks`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     setTasks(res.data);
@@ -71,7 +73,7 @@ function TaskManager() {
     if (input.trim()) {
       const token = localStorage.getItem('token');
       const res = await axios.post(
-        'http://localhost:5000/api/tasks',
+        `${API_URL}/api/tasks`,
         { text: input },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -85,7 +87,7 @@ function TaskManager() {
   const deleteTask = async idx => {
     const token = localStorage.getItem('token');
     const id = tasks[idx]._id;
-    await axios.delete(`http://localhost:5000/api/tasks/${id}`, {
+    await axios.delete(`${API_URL}/api/tasks/${id}`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     const newTasks = tasks.filter((_, i) => i !== idx);
@@ -97,7 +99,7 @@ function TaskManager() {
     const token = localStorage.getItem('token');
     const id = tasks[idx]._id;
     const updatedTask = { ...tasks[idx], completed: !tasks[idx].completed };
-    await axios.put(`http://localhost:5000/api/tasks/${id}`, updatedTask, {
+    await axios.put(`${API_URL}/api/tasks/${id}`, updatedTask, {
       headers: { Authorization: `Bearer ${token}` }
     });
     const newTasks = tasks.map((task, i) => i === idx ? { ...task, completed: !task.completed } : task);

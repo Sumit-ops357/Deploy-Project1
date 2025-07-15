@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { API_URL } from '../utils/api';
 
 function SessionHistory() {
   const [sessions, setSessions] = useState([]);
@@ -6,7 +7,7 @@ function SessionHistory() {
   useEffect(() => {
     const fetchSessions = async () => {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:5000/api/pomodoros', {
+      const res = await fetch(`${API_URL}/api/pomodoros`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await res.json();
